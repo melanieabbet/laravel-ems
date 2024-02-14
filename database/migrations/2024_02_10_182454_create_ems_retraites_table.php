@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->date('date_de_naissance');
+            $table->text('note');
             $table->foreignId('ems_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

@@ -11,6 +11,6 @@ class Ems extends Model
 
     public function numberOfRetraites()
     {
-        return $this->hasMany(Retraite::class);
+        return $this->hasMany(Retraite::class)->count();
     }
 }

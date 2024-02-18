@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RetraiteController;
+use App\Http\Controllers\EmsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +20,7 @@ use App\Http\Controllers\RetraiteController;
 
 Route::resource('retraites', RetraiteController::class);
 Route::get('/', [RetraiteController::class, 'index']);
+Route::resource('ems', EmsController::class);
+Route::get('ems/{id}', [EmsController::class, 'single'])->name('ems.show');
+Route::get('ems/create', [EmsController::class, 'create'])->name('ems.create');
+Route::post('ems/store', [EmsController::class, 'store'])->name('ems.store');

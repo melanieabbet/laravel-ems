@@ -28,7 +28,7 @@
                 <td>{{ $ems->adresse }}</td>
                 <td>{{ $ems->numero_telephone }}</td>
                 <td>{{ $ems->numberOfRetraites() }} {{ Str::plural('retraité', $ems->numberOfRetraites()) }}</td>
-                <td class="d-flex gap-3 justify-content-end"><button class="btn btn-sm btn-success"><i class="bi bi-pencil-fill"></i></button><button class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button></td>
+                <td class="d-flex gap-3 justify-content-end"><a href="{{ route('ems.edit', $ems->id) }}" class="btn btn-sm btn-success" role="button"><i class="bi bi-pencil-fill"></i></a><a class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></a></td>
             </tr>
             @endforeach
         </tbody>

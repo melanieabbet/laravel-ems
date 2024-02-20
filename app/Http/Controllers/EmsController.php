@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ems; 
+use App\Http\Requests\StoreEmsRequest;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Requests;
 
 
 class EmsController extends Controller
@@ -14,27 +15,39 @@ class EmsController extends Controller
     {
         return view('ems.index', ['ems' => Ems::all()]);
     }
+
     public function show($id)
     {
         $ems = Ems::findOrFail($id);
         return view('ems.single', compact('ems'));
     }
+
     public function create()
     {
-        return view('ems.create');
+        return view('ems.create', ['ems' => new Ems()]);
     }
 
-    public function store(Request $request)
+    public function edit($id)
     {
-        $request->validate([
-            'societe' => 'required|string|max:255',
-            'adresse' => 'required|string|max:255',
-            'numero_telephone' => 'nullable|string|max:15',
-        ]);
-
-        Ems::create($request->all());
-
-        return redirect()->route('ems.create')->with('success', 'EMS ajouté avec succès.');
+        $ems = Ems::findOrFail($id);
+        return view('ems.edit', compact('ems'));
     }
+
+    public function update(StoreEmsRequest $request)
+    {
+        
+        $id = $request->input('id');
+        $ems = Ems::findOrFail($id);
+        $validatedData = $request->validated();
+        $ems->update($validatedData);
+        return redirect()->route('ems.show', ['id' => $id])->with('success', 'Ems mis à jour');
+    }
+
+    public function store(StoreEmsRequest $request)
+    {
+        Ems::create($request->except('_token', '_method'));
+        return redirect()->route('ems.index')->with('success', 'EMS ajouté avec succès.');
+    }
+
 
 }

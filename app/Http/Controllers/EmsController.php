@@ -50,4 +50,17 @@ class EmsController extends Controller
     }
 
 
+    public function destroy($id)
+    {
+        $ems = Ems::findOrFail($id);
+
+        if (!$ems->isDeletable()) {
+            return redirect()->back()->with('error', 'Impossible de supprimer cet Ems car il contient des retraités.');
+        }else {
+            $ems->delete();
+            return redirect()->route('ems.index')->with('success', 'Ems supprimé avec succès');
+        }
+    }
+
+
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Nouvel Ems</h1>
+    <h1>Modifer l'Ems</h1>
     <div class="row justify-content-between">
         <div class="col-4">
         @dump($ems->id)

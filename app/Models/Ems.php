@@ -13,4 +13,9 @@ class Ems extends Model
     {
         return $this->hasMany(Retraite::class)->count();
     }
+
+    public function isDeletable()
+    {
+        return $this->numberOfRetraites() == 0;
+    }
 }

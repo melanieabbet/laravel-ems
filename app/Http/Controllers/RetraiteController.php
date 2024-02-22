@@ -12,8 +12,10 @@ class RetraiteController extends Controller
 {
     public function index()
     {
-        // return view('retraites.index', ['retraites' => Retraite::all()]);
-        $retraites = Retraite::with('ems')->get();
+        $retraites = Retraite::with('ems')
+                         ->orderBy('ems_id')
+                         ->orderBy('nom')
+                         ->get();
         return view('retraites.index', compact('retraites'));
     }
     public function create()
@@ -29,5 +31,26 @@ class RetraiteController extends Controller
         return redirect()->route('retraites.index')->with('success', 'Retraite ajouté avec succès.');
     }
     
+    public function edit($id)
+    {
+        $retraite = Retraite::findOrFail($id);
+        $emsList = Ems::all();
+        return view('retraites.edit', compact('retraite','emsList'));
+    }
+    public function update(StoreRetraiteRequest $request)
+    {
+        
+        $id = $request->input('id');
+        $retraite = Retraite::findOrFail($id);
+        $validatedData = $request->validated();
+        $retraite->update($validatedData);
+        return redirect()->route('retraites.index', ['id' => $id])->with('success', 'Ems mis à jour');
+    }
+    public function destroy($id)
+    {
+        $retraite = Retraite::findOrFail($id);
+        $retraite->delete();
+        return redirect()->route('retraites.index')->with('success', 'Retraité supprimé avec succès');
+    }
 
 }

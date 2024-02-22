@@ -29,12 +29,8 @@
                 <td>{{ $ems->numero_telephone }}</td>
                 <td>{{ $ems->numberOfRetraites() }} {{ Str::plural('retraité', $ems->numberOfRetraites()) }}</td>
                 <td class="d-flex gap-3 justify-content-end">
-                    <a href="{{ route('ems.edit', $ems->id) }}" class="btn btn-sm btn-success" role="button"><i class="bi bi-pencil-fill"></i></a>
-                    <!-- <form action="{{ route('ems.destroy', $ems->id) }}" method="POST" onsubmit="return confirm('Valider la suppression de cet Ems?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash3"></i></button>
-                    </form> -->
+                    <a href="{{ route('ems.show', $ems->id) }}" class="btn btn-sm btn-secondary" role="button"><i class="bi bi-eye"></i></a>
+                    <a href="{{ route('ems.edit', $ems->id) }}" class="btn btn-sm btn-success" role="button"><i class="bi bi-pencil"></i></a>
                     @if ($ems->isDeletable())
                         <form action="{{ route('ems.destroy', $ems->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet Ems?');">
                             @csrf

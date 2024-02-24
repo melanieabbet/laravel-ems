@@ -22,6 +22,7 @@
     </div>
     </nav>
     <main class="container">
+        @include('layouts.flash-message')
         @yield('content')
     </main>
 </body>

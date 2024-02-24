@@ -28,7 +28,7 @@ class RetraiteController extends Controller
     public function store(StoreRetraiteRequest $request)
     {
         Retraite::create($request->except('_token', '_method'));
-        return redirect()->route('retraites.index')->with('success', 'Retraite ajouté avec succès.');
+        return redirect()->route('retraites.index')->with('success', 'Retraité ajouté avec succès.');
     }
     
     public function edit($id)
@@ -44,7 +44,7 @@ class RetraiteController extends Controller
         $retraite = Retraite::findOrFail($id);
         $validatedData = $request->validated();
         $retraite->update($validatedData);
-        return redirect()->route('retraites.index', ['id' => $id])->with('success', 'Ems mis à jour');
+        return redirect()->route('retraites.index', ['id' => $id])->with('success', 'Retraité mis à jour');
     }
     public function destroy($id)
     {

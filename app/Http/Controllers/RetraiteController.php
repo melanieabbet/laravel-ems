@@ -20,6 +20,11 @@ class RetraiteController extends Controller
     }
     public function create()
     {
+        $emsCount = Ems::count();
+        if ($emsCount === 0) {
+            // Aucun EMS n'existe, renvoyer un message d'erreur
+            return redirect()->back()->with('error', 'Impossible d\'ajouter un retraité car aucun EMS n\'existe.');
+        }
         $emsList = Ems::all();
         $retraite = new Retraite();
         return view('retraites.create', compact('retraite', 'emsList'));

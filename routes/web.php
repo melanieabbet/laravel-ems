@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RetraiteController;
 use App\Http\Controllers\EmsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +15,20 @@ use App\Http\Controllers\EmsController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route pour afficher le formulaire de connexion/inscription
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 
-// Route::get('/', function () {
-// return view('welcome');
-// });
+// Route pour gérer la soumission du formulaire de connexion/inscription
+Route::post('/login', [UserController::class, 'loginOrRegister'])->name('login.post');
 
-Route::resource('retraites', RetraiteController::class);
-Route::get('/', [RetraiteController::class, 'index']);
+// Route pour la déconnexion
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
-Route::resource('ems', EmsController::class);
-Route::get('ems/{id}', [EmsController::class, 'single'])->name('ems.show');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('retraites', RetraiteController::class)->except('index');
+    Route::get('/', [RetraiteController::class, 'index'])->name('retraites.index');
+
+    Route::resource('ems', EmsController::class)->except('single');
+    Route::get('ems/{id}', [EmsController::class, 'single'])->name('ems.show');
+});
 

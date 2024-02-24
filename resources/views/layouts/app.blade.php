@@ -11,13 +11,21 @@
     <nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
     <div class="container-fluid">
         <a class="navbar-brand px-5" href="#">Laravel EMS</a>
-        <ul class="navbar-nav mb-2 mb-md-0 px-5">
+        <ul class="navbar-nav mb-2 mb-md-0 px-5 align-items-center">
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{ route('retraites.index') }}">Retraités</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="{{ route('ems.index') }}">Ems</a>
             </li>
+            @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <li class="nav-item">
+                        <button type="submit" class="ms-4 btn btn-sm btn-outline-light"><i class="bi bi-person-fill"></i> Logout</button>
+                    </li>
+                </form>
+            @endauth
         </ul>
     </div>
     </nav>

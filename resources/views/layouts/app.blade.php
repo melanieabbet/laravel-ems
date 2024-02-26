@@ -13,10 +13,10 @@
         <a class="navbar-brand px-5" href="#">Laravel EMS</a>
         <ul class="navbar-nav mb-2 mb-md-0 px-5 align-items-center">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('retraites.index') }}">Retraités</a>
+                <a class="nav-link {{ request()->routeIs('retraites.*') ? 'active' : '' }}" aria-current="page" href="{{ route('retraites.index') }}">Retraités</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="{{ route('ems.index') }}">Ems</a>
+                <a class="nav-link {{ request()->routeIs('ems.*') ? 'active' : '' }}" aria-current="page" href="{{ route('ems.index') }}">Ems</a>
             </li>
             @auth
                 <form method="POST" action="{{ route('logout') }}">

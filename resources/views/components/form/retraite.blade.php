@@ -17,7 +17,7 @@
         <div class="text-danger">{{ $errors->first('date_de_naissance') }}</div>
     @endif 
     <label for="note" class="form-label">Note</label>
-    <input type="text" class="form-control" id="note" name="note" value="{{ old('note',$retraite->note) }}">
+    <textarea class="form-control" id="note" name="note" value="{{ old('note',$retraite->note) }}"></textarea>
     @if($errors->has('note'))
         <div class="text-danger">{{ $errors->first('note') }}</div>
     @endif 

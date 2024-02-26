@@ -27,6 +27,8 @@ Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::resource('retraites', RetraiteController::class)->except('index');
     Route::get('/', [RetraiteController::class, 'index'])->name('retraites.index');
+    Route::get('/retraites/create/{ems_id?}', [RetraitesController::class, 'create'])->name('retraites.create');
+    Route::delete('/retraites/destroyAllByEms/{id}', [RetraiteController::class, 'destroyAllByEms'])->name('retraites.destroyAllByEms');
 
     Route::resource('ems', EmsController::class)->except('single');
     Route::get('ems/{id}', [EmsController::class, 'single'])->name('ems.show');

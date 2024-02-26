@@ -24,7 +24,7 @@
     <label for="ems_id" class="form-label">Ems</label>
     <select name="ems_id" id="ems_id" class="form-select">
         @foreach($emsList as $ems)
-            <option value="{{ $ems->id }}">{{ $ems->societe }}</option>
+            <option value="{{ $ems->id }}" {{ $ems_id = $ems->id ? 'selected' : '' }}>{{ $ems->societe }}</option>
         @endforeach
     </select>
 </div>

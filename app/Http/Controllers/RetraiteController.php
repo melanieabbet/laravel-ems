@@ -18,7 +18,7 @@ class RetraiteController extends Controller
                          ->get();
         return view('retraites.index', compact('retraites'));
     }
-    public function create()
+    public function create($ems_id= null)
     {
         $emsCount = Ems::count();
         if ($emsCount === 0) {
@@ -27,7 +27,7 @@ class RetraiteController extends Controller
         }
         $emsList = Ems::all();
         $retraite = new Retraite();
-        return view('retraites.create', compact('retraite', 'emsList'));
+        return view('retraites.create', compact('retraite', 'emsList', 'ems_id'));
     }
 
     public function store(StoreRetraiteRequest $request)
@@ -56,6 +56,11 @@ class RetraiteController extends Controller
         $retraite = Retraite::findOrFail($id);
         $retraite->delete();
         return redirect()->route('retraites.index')->with('success', 'Retraité supprimé avec succès');
+    }
+    public function destroyAllByEms($id)
+    {
+        Retraite::where('ems_id', $id)->delete();
+        return redirect()->back()->with('success', 'Tous les retraités pour cette EMS ont été supprimés avec succès.');
     }
 
 }

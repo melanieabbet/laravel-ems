@@ -19,9 +19,6 @@ visualisation d'une liste d'EMS, et le nombre de retraités associé. Lien vers 
 3. Single EMS :
 visualisation des détails d'un EMS. Possibilité d'ajout d'un retraité pour l'EMS spécifique (présélection de l'EMS) et suppression de tous les retraités affiliés.
 
- # Vue
-
- Aper
 
  # Installation et exécution de l'application
 
